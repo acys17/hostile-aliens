@@ -1,0 +1,11 @@
+{
+  "name": "hostile-aliens",
+  "version": "1.0.0",
+  "main": "index.html",
+  "author": "Alice",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "sass": "^1.30.0"
+  }
+}

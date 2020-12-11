@@ -1,0 +1,19 @@
+body {
+    display: flex;
+    flex-direction: column;
+
+    #ships {
+        display: flex;
+        font-size: 14px;
+        flex-wrap: wrap;
+
+        :nth-child(n) {
+            margin: 10px;
+            // border: 2px black solid;
+        }
+    }
+
+    #button {
+        width: 200px;
+    }
+}
