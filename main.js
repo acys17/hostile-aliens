@@ -12,7 +12,7 @@ class Ship {
         return `
         <div>
             <h2>${this.name}</h2>
-            <p>${this.points}xp</p>
+            <p>${this.points}</p>
         </div>
         `;
     }
@@ -46,8 +46,6 @@ attackButton.addEventListener("click", () => {
     const shipHit = liveShips.find((ship) => {
         if(randomNumber === ship.id && ship.points > 0) {
             return ship;
-        } else {
-            return null;
         }
     });
 
@@ -71,7 +69,7 @@ attackButton.addEventListener("click", () => {
         shipArray.forEach(ship => {
             ship.points = 0;
         })
-        alert("MOTHERSHIP DESTROYED, YOU HAVE SAVED PLANET EARTH")
+        alert("MOTHERSHIP DESTROYED")
     }
     document.getElementById("ships").innerHTML = ""
     shipArray.forEach(ship => {
