@@ -1,3 +1,5 @@
+const attackButton = document.getElementById("attack-button");
+const resetButton = document.getElementById("reset-button");
 
 class Ship {
     constructor(_id, _name, _points) {
@@ -33,29 +35,50 @@ class Ship {
         new Ship(13, "A", 45),
     ]
 
-button.addEventListener("click", () => {
+shipArray.forEach(ship => {
+    document.getElementById("ships").innerHTML += ship.render();
+});
+
+attackButton.addEventListener("click", () => {
+    const mothership = shipArray.find(ship => ship.id === 0);
     let randomNumber = Math.floor(Math.random() * 14)
-    const shipHit = shipArray.find((ship) => {
-        if(randomNumber === ship.id) {
+    const liveShips = shipArray.filter((ship) => ship.points);
+    const shipHit = liveShips.find((ship) => {
+        if(randomNumber === ship.id && ship.points > 0) {
             return ship;
+        } else {
+            return null;
         }
     });
 
     if(shipHit.name === "M") {
         console.log("Mothership hit!");
         shipHit.points -= 9;
-        console.log(shipHit.points);
     } else if(shipHit.name === "D") {
         console.log("Defenceship hit!");
         shipHit.points -= 10;
-        console.log(shipHit.points);
     } else if(shipHit.name === "A") {
         console.log("Attackship hit!");
         shipHit.points -= 12;
-        console.log(shipHit.points);
+    } else {
+        console.log("Missed hit!");
     }
+
+    if(shipHit.points < 0) {
+        shipHit.points = 0;
+    }
+    if(mothership.points === 0) {
+        shipArray.forEach(ship => {
+            ship.points = 0;
+        })
+        alert("MOTHERSHIP DESTROYED, YOU HAVE SAVED PLANET EARTH")
+    }
+    document.getElementById("ships").innerHTML = ""
+    shipArray.forEach(ship => {
+        document.getElementById("ships").innerHTML += ship.render();
+    });
 })
 
-const printShips = shipArray.forEach(ship => {
-    document.getElementById("ships").innerHTML += ship.render();
-});
+resetButton.addEventListener("click", () => {
+    document.location.href = "";
+})
